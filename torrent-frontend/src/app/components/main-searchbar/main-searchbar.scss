@@ -1,0 +1,13 @@
+input {
+
+  &:hover {
+    border: 1px solid #480202 !important ;
+  }
+
+  &:focus {
+    border: 1px solid #280000 !important;
+    box-shadow: 0 0 100px 10px #230000 !important;
+  }
+}
+
+
