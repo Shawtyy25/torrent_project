@@ -2,14 +2,16 @@
 
   <p-iconfield class="w-full ">
 
-    <p-inputicon class="pi pi-search"/>
+    <p-inputicon class="pi pi-search !text-gray-500"/>
 
     <input
       type="text"
-      class="!w-full !text-gray-400 !rounded-[1rem]"
+      class="!w-full !text-gray-400 !rounded-[.9rem] placeholder:!text-gray-500"
+      [ngClass]="searchTriggered() ? 'activated' : ''"
       pInputText
       placeholder="Search torrents..."
       [(ngModel)]="searchInput"
+      (keyup.enter)="onSearch()"
     />
 
   </p-iconfield>
