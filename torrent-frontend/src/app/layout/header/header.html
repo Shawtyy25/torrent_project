@@ -1,4 +1,7 @@
-<div class="flex flex-col min-h-screen">
+<div
+  class="flex flex-col"
+  [ngClass]="inputState.hasSearched() ? 'h-[140px]' : 'min-h-screen'"
+>
   @if (!isMobileVersion()) {
     <app-pc-header />
   } @else {

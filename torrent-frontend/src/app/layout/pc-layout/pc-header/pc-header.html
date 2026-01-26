@@ -1,0 +1,37 @@
+<header
+  class="w-full flex flex-col items-center fixed top-0 left-0 z-50 transition-all duration-[600ms] ease-[cubic-bezier(.25,.8,.25,1)] font-bold !p-8"
+  [ngClass]="inputState.hasSearched()
+      ? 'h-[140px] backdrop-blur-xl border-b border-white/5 justify-center pb-5 items-center !flex-row'
+      : 'h-screen bg-transparent justify-center'"
+>
+  <div class="absolute transition-all duration-[600ms] font-bold tracking-wider"
+       [ngClass]="inputState.hasSearched()
+           ? 'top-[35%] left-8 text-2xl translate-y-0'
+           : 'top-[30%] left-1/2 -translate-x-1/2 text-6xl'">
+    <span
+      class="text-white italic"
+      [ngClass]="!inputState.hasSearched() ? 'text-5xl' : 'text-4xl'"
+    >
+      NEXUS
+    </span>
+
+  </div>
+
+  <app-main-searchbar
+    class="w-full transition-all duration-700"
+    [ngClass]="inputState.hasSearched()
+      ? 'max-w-[600px]'
+      : 'max-w-[550px] px-4 scale-110'"
+  />
+
+  @if (inputState.hasSearched()) {
+    <p-avatar
+      icon="pi pi-user"
+      class="absolute right-12 cursor-pointer"
+      size="large"
+      style="background-color: #ece9fc; color: #2a1261"
+      shape="circle"
+    />
+  }
+
+</header>

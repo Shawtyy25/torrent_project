@@ -1,18 +1,20 @@
-import { Component, signal } from '@angular/core';
-import {MainSearchbar} from './components/main-searchbar/main-searchbar';
-import {Header} from './components/header/header';
+import {Component, inject, signal} from '@angular/core';
+import {MainSearchbar} from './shared/components/main-searchbar/main-searchbar';
+import {Header} from './layout/header/header';
+import {TorrentTrackerContainer} from './layout/torrent-tracker-container/torrent-tracker-container';
+import {InputStateService} from './core/services/input-state.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   imports: [
-    MainSearchbar,
-    Header
+    Header,
+    TorrentTrackerContainer
   ],
   styleUrl: './app.scss'
 })
 export class App {
-  hasSearched = signal(false);
+  inputState = inject(InputStateService);
 
 
 }

@@ -1,9 +1,10 @@
-import {Component, output, Output, signal} from '@angular/core';
+import {Component, inject, output, Output, signal} from '@angular/core';
 import {InputText} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {IconField} from 'primeng/iconfield';
 import {InputIcon} from 'primeng/inputicon';
 import {NgClass} from '@angular/common';
+import {InputStateService} from '../../../core/services/input-state.service';
 
 
 @Component({
@@ -19,14 +20,13 @@ import {NgClass} from '@angular/common';
   styleUrl: './main-searchbar.scss',
 })
 export class MainSearchbar {
+  inputState = inject(InputStateService);
+
   searchInput: string = "";
-  searchTriggeredOutput = output<boolean>();
-  searchTriggered = signal(false);
 
   onSearch() {
     if (this.searchInput.trim()){
-      this.searchTriggeredOutput.emit(true);
-      this.searchTriggered.set(true);
+      this.inputState.performSearch(this.searchInput);
     }
 
   }

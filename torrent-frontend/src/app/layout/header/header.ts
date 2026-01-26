@@ -1,7 +1,8 @@
 import {Component, DestroyRef, HostListener, inject, signal} from '@angular/core';
-import {MainSearchbar} from '../main-searchbar/main-searchbar';
+import {MainSearchbar} from '../../shared/components/main-searchbar/main-searchbar';
 import {NgClass} from '@angular/common';
 import {PcHeader} from '../pc-layout/pc-header/pc-header';
+import {InputStateService} from '../../core/services/input-state.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ import {PcHeader} from '../pc-layout/pc-header/pc-header';
 })
 export class Header {
   private readonly destroyRef = inject(DestroyRef);
-
+  inputState = inject(InputStateService);
 
   isMobileVersion = signal(false);
 

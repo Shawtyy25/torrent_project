@@ -1,10 +1,10 @@
 input {
 
-  &:hover {
+  &:hover:not(.activated) {
     border: 1px solid #480202 !important ;
   }
 
-  &:focus {
+  &:focus:not(.activated) {
     border: 1px solid #3f2a2a !important;
     box-shadow: 0 0 200px 30px #230000 !important;
   }

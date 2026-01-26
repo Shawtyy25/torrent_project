@@ -7,7 +7,7 @@
     <input
       type="text"
       class="!w-full !text-gray-400 !rounded-[.9rem] placeholder:!text-gray-500"
-      [ngClass]="searchTriggered() ? 'activated' : ''"
+      [ngClass]="inputState.hasSearched() ? 'activated' : ''"
       pInputText
       placeholder="Search torrents..."
       [(ngModel)]="searchInput"
