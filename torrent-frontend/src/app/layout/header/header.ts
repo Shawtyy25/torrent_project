@@ -7,7 +7,6 @@ import {InputStateService} from '../../core/services/input-state.service';
 @Component({
   selector: 'app-header',
   imports: [
-    MainSearchbar,
     NgClass,
     PcHeader
   ],
@@ -21,7 +20,7 @@ export class Header {
   isMobileVersion = signal(false);
 
   constructor() {
-    const mql = window.matchMedia('(max-width: 999.98px)');
+    const mql = window.matchMedia('(max-width: 1000px)');
 
     const apply = () => {
       this.isMobileVersion.set(mql.matches);

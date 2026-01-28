@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FilterComponent} from '../../features/filter/filter.component';
 import {TorrentTrackerComponent} from '../../features/torrent-tracker/torrent-tracker.component';
 

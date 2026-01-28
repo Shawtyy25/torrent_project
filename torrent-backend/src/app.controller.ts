@@ -16,4 +16,9 @@ export class AppController {
 
     return this.appService.search(query);
   }
+
+  @Get('categories')
+  searchCategories() {
+    return this.appService.getAvailableCategories();
+  }
 }
