@@ -1,0 +1,11 @@
+<div
+  [class.h-[140px]]="inputState.hasSearched()"
+  [class.min-h-screen]="!inputState.hasSearched()"
+  class="flex flex-col  transition-all duration-300"
+>
+  @if (!isMobileVersion()) {
+    <app-pc-header />
+  } @else {
+    <h1 class="font-bold text-3xl">Mobile layout</h1>
+  }
+</div>

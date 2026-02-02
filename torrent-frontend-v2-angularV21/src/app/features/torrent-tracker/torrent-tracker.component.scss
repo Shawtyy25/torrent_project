@@ -1,0 +1,121 @@
+:host ::ng-deep {
+  /* A DataView belső háttereinek eltüntetése */
+  .p-dataview {
+    background: transparent;
+    border: none;
+  }
+
+  .p-dataview-content {
+    background: transparent !important;
+    color: white;
+    border: none;
+
+  }
+
+  /* Paginator stílusozása */
+  .p-paginator {
+    background: transparent !important;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+
+    .p-paginator-page, .p-paginator-next, .p-paginator-last, .p-paginator-first, .p-paginator-prev {
+      color: rgba(238, 215, 215, 0.6);
+      background: transparent;
+      border-radius: 50%;
+      min-width: 2.5rem;
+      height: 2.5rem;
+
+      &:hover {
+        background: rgba(91, 6, 6, 0.44);
+        color: white;
+      }
+
+    }
+
+    .p-paginator-page-selected {
+      background: rgba(105, 0, 0, 0.26) !important;
+    }
+
+
+  }
+
+  /* Letöltés gomb stílusozása */
+  .p-button {
+    backdrop-filter: blur(10px);
+    background: transparent !important;
+    color: #b73737 !important;
+    border: 1px solid #af0606 !important;
+    box-shadow: 0 0 10px 0 #410000 !important;
+
+    &:hover {
+      box-shadow: 0 0 10px 0 #ff0000 !important;
+      background: transparent !important;
+      color: #c7c7c7 !important;
+    }
+
+  }
+
+}
+
+/* Base itemek stílusai */
+.torrent-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-color: #5d2929 !important;
+
+  // Kezdeti állapot
+  background: transparent;
+
+  &:hover {
+    // Enyhe kiemelkedés és világosodás
+    transform: translateY(-2px) scale(1.005);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+
+    // Bal oldali díszítő csík
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 15%;
+      height: 70%;
+      width: 3px;
+      background: #ef4444; // A pirosod
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+    }
+
+    // Az ikon kicsit megmozdul
+    .pi-file-arrow-up {
+      transform: translateY(-3px);
+      color: #ef4444;
+    }
+  }
+
+  // Az ikon alapállapota
+  .pi-file-arrow-up {
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Megjelenési animáció (amikor betöltődik a lista)
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Ezt rátesszük az elemekre, hogy sorban ússzanak be
+.torrent-item {
+  animation: slideIn 0.4s ease forwards;
+
+}
