@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import * as xml2js from 'xml2js';
 
 export interface TorrentItem {
   title: string;
@@ -18,12 +19,40 @@ export interface TorrentItem {
 export class AppService {
   private jackettUrl = 'http://localhost:9117';
   private jackettApiKey = '9qvua6rjuw9wao16d3ific0je2afh6a6';
-  private categories: string[] = [];
 
   constructor(private readonly httpService: HttpService) {}
 
   getHello(): string {
     return 'Működik a torrent backend!';
+  }
+
+  async getCategoriesAPI() {
+    const capsUrl = `${this.jackettUrl}/api/v2.0/indexers/all/results/torznab/api`;
+
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get(capsUrl, {
+          params: {
+            apikey: this.jackettApiKey,
+            t: 'caps',
+          },
+        }),
+      );
+
+      const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
+      const result = await parser.parseStringPromise(response.data);
+
+      const categories = result.caps.categories.category.map((cat: any) => ({
+        id: cat.id,
+        name: cat.name,
+      }));
+
+      console.log(categories);
+      return categories;
+    } catch (e) {
+      console.error('Hiba a kategóriák lekérésekor:', e.message);
+      return [];
+    }
   }
 
   async search(query: string) {
@@ -60,31 +89,11 @@ export class AppService {
           : item.Category,
       }));
 
-      this.categories = this.generateCategories(torrents);
-
       return torrents;
     } catch (e) {
       console.error('Hiba a Jackett hívásakor: ', e);
       return [];
     }
-  }
-
-  /* -------- KATEGÓRIÁK LEKÉRÉSE ------------- */
-  getAvailableCategories() {
-    return this.categories;
-  }
-
-  /* ------------ SEGÉD FÜGGVÉNYEK ------------ */
-  private generateCategories(data: TorrentItem[]): string[] {
-    const uniqueCategoryNames = new Set<string>();
-    console.log(data);
-
-    data.forEach((torrentItem) => {
-      const categoryName = this.transformCategoryToName(torrentItem.category);
-      uniqueCategoryNames.add(categoryName);
-    });
-
-    return Array.from(uniqueCategoryNames).sort();
   }
 
   /* ---------------- KATEGÓRIA ÁTALAKÍTÁSA ---------------------- */
