@@ -1,0 +1,17 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+
+### POST request
+POST http://localhost:8080/create-mimic
+Content-Type: application/json
+
+{
+  "id": 2000,
+  "userId": 100000000,
+  "title": "anyad",
+  "body": "ANYAD TESZTJE"
+}
+###

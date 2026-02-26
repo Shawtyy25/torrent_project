@@ -42,7 +42,7 @@ export class AppService {
       const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
       const result = await parser.parseStringPromise(response.data);
 
-      const categories = result.caps.categories.category.map((cat: any) => ({
+      const categories = result.caps.categories.category.map((cat: any): {id: number, name: string} => ({
         id: cat.id,
         name: cat.name,
       }));
